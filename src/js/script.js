@@ -95,6 +95,8 @@
       console.log('thisProduct accordionTrigger', thisProduct.accordionTrigger);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log('thisProduct.imageWrapper', thisProduct.imageWrapper);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     }
@@ -170,6 +172,8 @@
       for (let paramId in thisProduct.data.params) {
         console.log('paramId of params:', paramId);
         /* save the element in thisProduct.data.params with key paramId as const param */
+
+
         const param = thisProduct.data.params[paramId];
         console.log('param', param);
 
@@ -197,6 +201,24 @@
 
           /* END ELSE IF: if option is not selected and option is default */
           }
+
+          const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          console.log('images', images);
+
+
+          if (optionSelected) {
+            for (let image of images) {
+              console.log('image', image);
+              image.classList.add(classNames.menuProduct.imageVisible);
+
+            }
+          } else if (!optionSelected) {
+            for (let image of images) {
+              image.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+
+
         /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
