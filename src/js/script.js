@@ -56,7 +56,6 @@
     constructor(id, data) {
       const thisProduct = this;
 
-
       thisProduct.id = id;
       //console.log('thisProduct.id', thisProduct.id);
       thisProduct.data = data;
@@ -75,8 +74,10 @@
     renderInMenu() {
       const thisProduct = this;
 
+      console.log(thisProduct);
       /* generate HTML based on template */
       const generatedHTML = templates.menuProduct(thisProduct.data);
+      console.log(generatedHTML);
 
       //console.log('generatedHTML', generatedHTML);
 
@@ -86,7 +87,7 @@
 
       /* find menu container */
       const menuContainer = document.querySelector(select.containerOf.menu);
-
+      console.log(menuContainer);
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
@@ -111,7 +112,7 @@
 
       /* find the clickable trigger (the element that should react to clicking) */
       //const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      ////console.log('clickableTrigger', clickableTrigger);
+      //console.log('clickableTrigger', clickableTrigger);
 
       /* START: click event listener to trigger */
       thisProduct.accordionTrigger.addEventListener('click', function(event) {
@@ -176,7 +177,6 @@
         //console.log('paramId of params:', paramId);
         /* save the element in thisProduct.data.params with key paramId as const param */
 
-
         const param = thisProduct.data.params[paramId];
         //console.log('param', param);
 
@@ -208,7 +208,6 @@
           const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
           //console.log('images', images);
 
-
           if (optionSelected) {
             for (let image of images) {
               //console.log('image', image);
@@ -220,8 +219,6 @@
               image.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
-
-
         /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
@@ -279,12 +276,12 @@
       }
       thisWidget.input.value = thisWidget.value;
     }
+
     initActions() {
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function() {
         thisWidget.setValue(thisWidget.input.value);
-
       });
       thisWidget.linkDecrease.addEventListener('click', function(event) {
         event.preventDefault();
@@ -294,6 +291,7 @@
         thisWidget.setValue(thisWidget.value + 1);
       });
     }
+
     announce() {
       const thisWidget = this;
 
@@ -305,14 +303,14 @@
   const app = {
     initMenu: function() {
       //const testProduct = new Product();
-      ////console.log('testProduct:', testProduct);
+      //console.log('testProduct:', testProduct);
 
       const thisApp = this;
       //console.log('thisApp.data', thisApp.data);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
-        ////console.log('productData', productData);
+        //console.log('productData', productData);
       }
     },
 
