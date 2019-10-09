@@ -477,8 +477,8 @@
 
       const payload = {
         address: 'test',
-        customerPhone: thisCart.dom.phone,
-        customerAddress: thisCart.dom.address,
+        customerPhone: thisCart.dom.phone.value,
+        customerAddress: thisCart.dom.address.value,
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
