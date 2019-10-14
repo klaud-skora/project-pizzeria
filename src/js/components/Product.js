@@ -18,7 +18,7 @@ class Product {
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
 
-    ////console.log('new Product:', thisProduct);
+    //console.log('new Product:', thisProduct);
   }
   renderInMenu() {
     const thisProduct = this;
@@ -27,7 +27,7 @@ class Product {
     /* generate HTML based on template */
     const generatedHTML = templates.menuProduct(thisProduct.data);
 
-    ////console.log('generatedHTML', generatedHTML);
+    //console.log('generatedHTML', generatedHTML);
 
     /* create element using utils.createElementFrom HTML */
     thisProduct.element = utils.createDOMFromHTML(generatedHTML);

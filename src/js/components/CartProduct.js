@@ -40,7 +40,7 @@ class CartProduct {
     thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
 
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
-      console.log('thisCartProduct.amount', thisCartProduct.amount);
+      //console.log('thisCartProduct.amount', thisCartProduct.amount);
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
 
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
@@ -57,7 +57,7 @@ class CartProduct {
     });
     thisCartProduct.dom.wrapper.dispatchEvent(event);
 
-    console.log('is it clicked?');
+    //console.log('is it clicked?');
   }
   initActions() {
     const thisCartProduct = this;

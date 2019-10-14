@@ -27,12 +27,12 @@ class Cart {
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
-    console.log('thisCart.dom.phone', thisCart.dom.phone);
+    //console.log('thisCart.dom.phone', thisCart.dom.phone);
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.renderTotalKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
-    console.log('thisCart.renderTotalKeys', thisCart.renderTotalKeys);
+    //console.log('thisCart.renderTotalKeys', thisCart.renderTotalKeys);
     for (let key of thisCart.renderTotalKeys) {
       thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
     }
