@@ -1,4 +1,4 @@
-import {settings, select, classNames, templates} from '../settings.js';
+import { settings, select, classNames, templates } from '../settings.js';
 import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
@@ -103,8 +103,11 @@ class Cart {
     console.log('thisCart.renderTotalKeys', thisCart.renderTotalKeys);
 
     for (let key of thisCart.renderTotalKeys) {
+      console.log('key', key);
       for (let elem of thisCart.dom[key]) {
+        console.log('elem', elem);
         elem.innerHTML = thisCart[key];
+        console.log(elem.innerHTML);
       }
     }
   }

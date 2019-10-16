@@ -1,4 +1,4 @@
-import {select} from '../settings.js';
+import { select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
@@ -16,6 +16,8 @@ class CartProduct {
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
+
+    console.log(thisCartProduct);
 
     //console.log('thisCartProduct', thisCartProduct);
     //console.log('productData', menuProduct);
