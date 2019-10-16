@@ -1,4 +1,4 @@
-import {settings, select} from '../settings.js';
+import { settings, select } from '../settings.js';
 import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget {
@@ -13,7 +13,6 @@ class AmountWidget extends BaseWidget {
 
     //console.log('amountWidget', thisWidget);
   }
-
   getElements() {
     const thisWidget = this;
 
