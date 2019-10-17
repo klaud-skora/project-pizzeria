@@ -103,7 +103,9 @@ class Cart {
     console.log('thisCart.renderTotalKeys', thisCart.renderTotalKeys);
 
     for (let key of thisCart.renderTotalKeys) {
+      console.log(key);
       for (let elem of thisCart.dom[key]) {
+        console.log('elem', elem);
         elem.innerHTML = thisCart[key];
       }
     }
@@ -124,7 +126,7 @@ class Cart {
     const thisCart = this;
 
     const url = settings.db.url + '/' + settings.db.order;
-
+    console.log('ej', thisCart);
     const payload = {
       address: 'test',
       customerPhone: thisCart.dom.phone.value,

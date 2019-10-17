@@ -18,19 +18,12 @@ class DatePicker extends BaseWidget {
     thisWidget.minDate = new Date(thisWidget.value);
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
-    /*
-    $(thisWidget.dom.input).flatpickr({
-      enableTime: true,
-      defaultDate: thisWidget.minDate,
-    }); */ //czemu wersja z dolarem nie działa?!
-
     const options = {
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
       'disable': [
         function(date) {
-          // return true to disable
           return (date.getDay() === 1);
         }
       ],
@@ -40,8 +33,8 @@ class DatePicker extends BaseWidget {
       onChange: function(selectedDate, dateStr, instance) {
         thisWidget.value = dateStr;
         console.log('dateStr', dateStr);
-        console.log('selectedDate', selectedDate);
         console.log('instance', instance);
+        console.log('selectedDate', selectedDate);
       }
     };
     // eslint-disable-next-line no-undef
