@@ -12,6 +12,7 @@ class Booking {
     thisBooking.initWidgets();
     thisBooking.getData();
   }
+
   getData() {
     const thisBooking = this;
 
@@ -105,11 +106,11 @@ class Booking {
       thisBooking.booked[date] = {};
     }
 
-    console.log('hour', hour);
+    //console.log('hour', hour);
 
     const startHour = utils.hourToNumber(hour);
 
-    console.log('startHour', startHour);
+    //console.log('startHour', startHour);
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock +=0.5) {
       //console.log(hourBlock);
 
@@ -124,10 +125,12 @@ class Booking {
   updateDOM() {
     const thisBooking = this;
 
+    //console.log('thisBooking.datePicker.value', thisBooking.datePicker.value);
     thisBooking.date = thisBooking.datePicker.value;
+    //console.log('thisBooking.hourPicker.value', thisBooking.hourPicker.value);
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-    console.log('thisbookieng, hour', thisBooking.hour);
+    //console.log('thisbookieng, hour', thisBooking.hour);
     let allAvailable = false;
 
     if (
@@ -138,7 +141,7 @@ class Booking {
       allAvailable = true;
     }
 
-    console.log('czy dostepne?', allAvailable);
+    //console.log('czy dostepne?', allAvailable);
     for (let table of thisBooking.dom.tables) {
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if (!isNaN(tableId)) {
@@ -153,9 +156,13 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
+
+        /* selection of available tables */
+        table.addEventListener('click', function() {
+          table.classList.toggle(classNames.booking.tableBooked);
+        });
       }
     }
-
   }
 
   render(booking) {
