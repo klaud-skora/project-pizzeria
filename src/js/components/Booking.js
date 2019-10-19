@@ -8,9 +8,14 @@ class Booking {
   constructor(booking) {
     const thisBooking = this;
 
+    thisBooking.bookings = [];
+
     thisBooking.render(booking);
     thisBooking.initWidgets();
     thisBooking.getData();
+
+    console.log('this booking', thisBooking);
+
   }
 
   getData() {
@@ -77,7 +82,10 @@ class Booking {
 
     thisBooking.booked = {};
 
+    console.log('bookings', bookings);
+
     for (let item of bookings) {
+      //console.log('item', item);
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
     for (let item of eventsCurrent) {
@@ -141,8 +149,8 @@ class Booking {
       allAvailable = true;
     }
 
-    //console.log('czy dostepne?', allAvailable);
     for (let table of thisBooking.dom.tables) {
+      console.log('table of at', table);
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
@@ -156,12 +164,16 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-
         /* selection of available tables */
         table.addEventListener('click', function() {
-          table.classList.toggle(classNames.booking.tableBooked);
+          table.classList.add(classNames.booking.tableBooked);
+          console.log('booked');
+
+          thisBooking.tableChosen = tableId;
+
         });
       }
+
     }
   }
 
@@ -171,6 +183,7 @@ class Booking {
     /* generate HTML with templates.bookingWidgets */
     const generatedHTML = templates.bookingWidget();
     //console.log('generatedHTML', generatedHTML);
+
     /* create empty object thisBooking.dom and store property wrapper */
     thisBooking.dom = {};
 
@@ -182,6 +195,10 @@ class Booking {
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+
   }
   initWidgets() {
     const thisBooking = this;
@@ -191,9 +208,56 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function() {
+    thisBooking.dom.datePicker.addEventListener('updated', function() {
       thisBooking.updateDOM();
     });
+
+    thisBooking.dom.hourPicker.addEventListener('updated', function() {
+      thisBooking.updateDOM();
+    });
+
+    console.log(thisBooking.dom.form);
+    thisBooking.dom.form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      thisBooking.sendBooking();
+    });
+  }
+
+  sendBooking() {
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.datePicker.value,
+      hour: thisBooking.hourPicker.value,
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
+      //starters: [],
+      customerPhone: thisBooking.dom.phone.value,
+      customerAddress: thisBooking.dom.address.value,
+      table: thisBooking.tableChosen,
+    };
+    for (let booking of thisBooking.bookings) {
+      console.log('booking', booking);
+      payload.bookings.push(booking.getData());
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body:JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(function(response) {
+        return response.json();
+      }).then(function(parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
   }
 }
 

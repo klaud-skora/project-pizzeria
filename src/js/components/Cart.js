@@ -55,6 +55,7 @@ class Cart {
       thisCart.remove(event.detail.cartProduct);
     });
 
+    console.log('for cart', thisCart.dom.form);
     thisCart.dom.form.addEventListener('submit', function(event) {
       event.preventDefault();
 
