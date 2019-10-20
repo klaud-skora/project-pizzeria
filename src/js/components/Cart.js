@@ -12,27 +12,22 @@ class Cart {
 
     thisCart.getElements(element);
     thisCart.initActions();
-
-    //console.log('new Cart:', thisCart);
   }
 
   getElements(element) {
     const thisCart = this;
 
     thisCart.dom = {};
-
     thisCart.dom.wrapper = element;
 
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
     thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
-    //console.log('thisCart.dom.phone', thisCart.dom.phone);
     thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     thisCart.renderTotalKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
-    //console.log('thisCart.renderTotalKeys', thisCart.renderTotalKeys);
     for (let key of thisCart.renderTotalKeys) {
       thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
     }
@@ -55,7 +50,7 @@ class Cart {
       thisCart.remove(event.detail.cartProduct);
     });
 
-    console.log('for cart', thisCart.dom.form);
+    //console.log('for cart', thisCart.dom.form);
     thisCart.dom.form.addEventListener('submit', function(event) {
       event.preventDefault();
 

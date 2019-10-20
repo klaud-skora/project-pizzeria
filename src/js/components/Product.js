@@ -7,9 +7,7 @@ class Product {
     const thisProduct = this;
 
     thisProduct.id = id;
-    //console.log('thisProduct.id', thisProduct.id);
     thisProduct.data = data;
-    ////console.log('thisProduct.data', thisProduct.data);
 
     thisProduct.renderInMenu();
     thisProduct.getElements();
@@ -17,16 +15,12 @@ class Product {
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
-    //console.log('new Product:', thisProduct);
   }
   renderInMenu() {
     const thisProduct = this;
 
-    ////console.log(thisProduct);
     /* generate HTML based on template */
     const generatedHTML = templates.menuProduct(thisProduct.data);
-
     //console.log('generatedHTML', generatedHTML);
 
     /* create element using utils.createElementFrom HTML */
@@ -43,11 +37,9 @@ class Product {
     const thisProduct = this;
 
     thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-    //////console.log('thisProduct accordionTrigger', thisProduct.accordionTrigger);
     thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
     thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
     thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-    //////console.log('thisProduct.imageWrapper', thisProduct.imageWrapper);
     thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
@@ -97,6 +89,7 @@ class Product {
     });
 
     for (let input of thisProduct.formInputs) {
+
       input.addEventListener('change', function() {
         thisProduct.processOrder();
       });
@@ -159,7 +152,6 @@ class Product {
         //////console.log('images', images);
 
         if (optionSelected) {
-
           if (!thisProduct.params[paramId]) {
             thisProduct.params[paramId] = {
               label: param.label,

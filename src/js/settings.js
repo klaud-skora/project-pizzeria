@@ -67,6 +67,7 @@ export const select = {
     formSubmit: '.booking__form [type="submit"]',
     phone: '[name="phone"]',
     address: '[name="address"]',
+    starters: '[name="starter"]',
   },
   nav: {
     links: '.main-nav a',
