@@ -32,7 +32,6 @@ $base-size: 12px;
   justify-content: space-between;
   width: 100%;
   margin: 14px 0;
-  border: 1px solid yellow;
 }
 
 .puzzles {
@@ -46,11 +45,34 @@ $base-size: 12px;
     border-radius: $radius;
     align-items: center;
     height: 122px;
+    position: relative;
+  }
+
+  .puzzle-content {
+    text-align: center;
+    transform: translate(0,0);
+    transition: transform .4s;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      display: none;
+    }
   }
 
   .puzzle-one, .puzzle-two {
     flex: 1;
     margin-bottom: 3px;
+
+    &:hover .puzzle-content{
+      transform: translate(0, -10%);
+
+      p {
+        display: block;
+      }
+    }
   }
 
   .puzzle-one {
@@ -104,6 +126,7 @@ $base-size: 12px;
     font-size: 14px;
     margin: 5px;
     margin-bottom: 14px;
+
     &:nth-child(2) {
       margin-bottom: 22px;
     }
@@ -134,39 +157,46 @@ $base-size: 12px;
     border-radius: $radius;
   }
 }
+
 .carousel-track {
   position: relative;
   height: 100%;
   transition: transform 300ms infinite;
 }
+
 .carousel-container {
-  background: green;
   position: relative;
   height: 100%;
   width: 106%;
-
 
   .carousel-slide {
     position: absolute;
     top: 0;
     left: 0;
-    //display: none;
+    display: none;
   }
+
   .carousel-slide.active-slide {
-    //display: block;
+    display: block;
   }
 }
+
 .carousel_nav {
-  text-align: center;
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
 
   .carousel_indicator {
+    display: inline-block;
+    margin: 0 8px;
     border: 0;
     border-radius: 50%;
-    width: 1px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background: rgba($color-dark,.3);
     cursor: pointer;
   }
+
   .current-slide {
     background: $color-dark;
   }
@@ -175,8 +205,9 @@ $base-size: 12px;
 
 .gallery {
   padding: 30px 0;
-  height: 500px;
+  height: 480px;
   width: 92%;
+
   .wrapper {
     width: 620px;
   }

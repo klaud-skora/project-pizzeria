@@ -68,17 +68,23 @@
         <div class="home-wrapper container">
           <div class="puzzles wrapper">
             <div class="puzzle puzzle-one">
-
-                <h2><a href="#order">ORDER ONLINE</a></h2>
+                <div class="puzzle-content">
+                  <h2><a href="#order">ORDER ONLINE</a></h2>
+                  <p>Delicious food deliverd to your door</p>
+                </div>
             </div>
             <div class="puzzle puzzle-two">
-              <h2><a href="#booking">BOOK A TABLE</a></h2>
+              <div class="puzzle-content">
+                <h2><a href="#booking">BOOK A TABLE</a></h2>
+                <p>Delicious food deliverd to your door</p>
+              </div>
             </div>
             <div class="puzzle puzzle-three">
-              <h2>OPENING HOURS:</h2>
-              <p>TUE-SUN, 12AM - 12PM</p>
+                <h2>OPENING HOURS:</h2>
+                <p>TUE-SUN, 12AM - 12PM</p>
             </div>
           </div>
+
           <div class="opinions container">
 
             <div class="wrapper">
@@ -88,7 +94,7 @@
               <div class="box-two opinion">
                 <div class="carousel-container">
                   <ul class="carousel-track">
-                    <li class="carousel-slide active-slide">
+                    <li id="one" class="carousel-slide active-slide">
                         <p><b>AMAZING SERVICE!</b></p>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -96,7 +102,7 @@
                         </p>
                         <p><i>- Margaret Osborne</i></p>
                     </li>
-                    <li class="carousel-slide">
+                    <li id="two" class="carousel-slide">
                         <p><b>WHAT A LOVELY PLACE!</b></p>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -104,7 +110,7 @@
                         </p>
                         <p><i>- Henry Dizalthy</i></p>
                     </li>
-                    <li class="carousel-slide">
+                    <li id="three" class="carousel-slide">
                         <p><b>YOU HAVE TO COME HERE!</b></p>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -118,9 +124,9 @@
             </div>
 
             <div class="carousel_nav">
-              <button class="carousel_indicator current-slide"></button>
-              <button class="carousel_indicator"></button>
-              <button class="carousel_indicator"></button>
+              <div id="one" class="carousel_indicator current-slide"></div>
+              <div id="two" class="carousel_indicator"></div>
+              <div id="three" class="carousel_indicator"></div>
             </div>
 
           </div>

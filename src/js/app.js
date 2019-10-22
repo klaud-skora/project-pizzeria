@@ -7,24 +7,49 @@ const app = {
 
   initCarousel() {
     const thisApp = this;
+    console.log(thisApp);
 
+    /*
     const track = document.querySelector(select.carousel.track);
     const slides = Array.from(track.children);
-    const dotsNav = document.querySelector(select.carousel.dotsNav);
-    const dots = Array.from(dotsNav.children);
+    //const dotsNav = document.querySelector(select.carousel.dotsNav);
+    //const dots = Array.from(dotsNav.children);
 
-    const slideWidth = thisApp.slides[0].getBoundingClientRect().width;
+    const slideWidth = slides[0].getBoundingClientRect().width;
 
     const setSlidePosition = (slide, index) => {
       slide.style.left = slideWidth * index + 'px';
     };
+
     slides.forEach(setSlidePosition);
+    */
 
+    const buttons = document.querySelectorAll('.carousel_indicator');
+    for (let button of buttons) {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
 
-    button
+        const activeDot = document.querySelector('.carousel_nav > .current-slide');
+        activeDot.classList.remove('current-slide');
+
+        button.classList.add('current-slide');
+
+        const opinions = document.querySelectorAll('.carousel-slide');
+        for (let opinion of opinions) {
+          console.log('opinion', opinion);
+          if (opinion.id == button.id) {
+            opinion.classList.add('active-slide');
+          } else {
+            opinion.classList.remove('active-slide');
+          }
+        }
+        console.log('b id', button.id);
+
+      });
+    }
 
     //thisApp.track.querySelector('.active-slide').nextElementSibling();
-    thisApp.track.transform = 'translateX(-' + thisApp.track.querySelector('.active-slide').nextElementSibling().style.left + ')';
+    //track.transform = 'translateX(-' + track.querySelector('.active-slide').nextElementSibling().style.left + ')';
   },
 
   initBooking: function() {
