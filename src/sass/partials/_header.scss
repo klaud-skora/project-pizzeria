@@ -1,5 +1,5 @@
 .header {
-  padding: ($base-size * 5) 0 ($base-size * 8) 0;
+  padding: ($base-size * 5) 0 ($base-size * 5) 0;
   background: $color-dark;
   color: $color-light;
 
@@ -33,6 +33,11 @@
     font-style: italic;
   }
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
 }
 
 .main-nav {
@@ -58,3 +63,4 @@
   }
 
 }
+

@@ -71,6 +71,12 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    sources: '.puzzles a',
+    logo: '.logo a',
+  },
+  carousel: {
+    track: '.carousel-track',
+    dotsNav: '.carousel_nav',
   },
 };
 
