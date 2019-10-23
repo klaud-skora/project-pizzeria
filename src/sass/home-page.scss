@@ -45,7 +45,6 @@ $base-size: 12px;
     border-radius: $radius;
     align-items: center;
     height: 122px;
-    position: relative;
   }
 
   .puzzle-content {
@@ -142,12 +141,8 @@ $base-size: 12px;
     height: 90%;
     padding-left: 29px;
     padding-top: 14px;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    overflow: hidden;
+    position: relative;
   }
 
   img {
@@ -158,55 +153,63 @@ $base-size: 12px;
   }
 }
 
-.carousel-track {
+.carousel {
   position: relative;
+  width: 100%;
   height: 100%;
-  transition: transform 300ms infinite;
+  overflow: hidden;
 }
 
-.carousel-container {
-  position: relative;
+.carousel .item {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  width: 106%;
+  background-color: #fff;
+}
 
-  .carousel-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-  }
+/* animations */
 
-  .carousel-slide.active-slide {
-    display: block;
-  }
+.carousel .slide-in {
+  transform: translate3d(-90%, 0px, 0px);
+  transition: transform 0.5s ease-out;
+  z-index: 1;
+}
+
+.carousel .slide-in:target,
+.carousel .slide-in:focus {
+  transform: translate3d(0px, 0px, 0px);
+  z-index: 2;
+}
+
+.carousel .slide-in:target ~ .slide-in {
+  transform: translate3d(90%, 0px, 0px);
 }
 
 .carousel_nav {
-  margin-top: 38px;
-  display: flex;
-  justify-content: center;
+  margin: 15px 0;
+  top: 20%;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 5;
 
-  .carousel_indicator {
-    display: inline-block;
-    margin: 0 8px;
-    border: 0;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-    background: rgba($color-dark,.3);
-    cursor: pointer;
+  .btn {
+    color: rgba($color-dark,.3);
+    font-size: 30px;
+    text-decoration: none;
+    margin-right: 10px;
   }
 
-  .current-slide {
-    background: $color-dark;
+  .active {
+    color: $color-dark;
   }
-
 }
 
 .gallery {
   padding: 30px 0;
-  height: 480px;
-  width: 92%;
+  height: 450px;
+  margin-top: 80px;
+  margin-bottom: 20px;
 
   .wrapper {
     width: 620px;
@@ -304,7 +307,6 @@ $base-size: 12px;
 
 .footer {
   align-self: flex-start;
-  padding-left: 25px;
   padding-bottom: 60px;
   margin: 0;
 

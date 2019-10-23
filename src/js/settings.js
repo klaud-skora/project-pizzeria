@@ -74,10 +74,6 @@ export const select = {
     sources: '.puzzles a',
     logo: '.logo a',
   },
-  carousel: {
-    track: '.carousel-track',
-    dotsNav: '.carousel_nav',
-  },
 };
 
 export const classNames = {
