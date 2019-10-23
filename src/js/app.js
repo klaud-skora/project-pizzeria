@@ -9,10 +9,11 @@ const app = {
   initCarousel() {
     const thisApp = this;
     console.log(thisApp);
-
+    const buttonArray = [];
     const buttons = document.querySelectorAll('.btn');
 
     for (let button of buttons) {
+      buttonArray.push(button);
       button.addEventListener('click', function() {
 
         //event.preventDefault();
@@ -24,10 +25,11 @@ const app = {
       });
     }
 
-    let i = 0;
+    console.log('buttonArray', buttonArray);
+
+    let i = 2;
     const opinionArray = [];
     const opinions = document.querySelectorAll('.item');
-    const time = 3000;
 
     for (let opinion of opinions) {
       opinionArray.push(opinion);
@@ -36,19 +38,23 @@ const app = {
 
 
     function changeOpinion() {
-      document.caretPositionFromPoint.src = opinionArray[i];
 
+      document.querySelector('.carousel').src = opinionArray[i];
       console.log(opinionArray[i]);
+
+      buttonArray[i].click();
 
       if (i < opinionArray.length - 1) {
         i++;
       } else {
         i = 0;
       }
-
-      setTimeout('changeOpinion()', time);
     }
-    window.onload = changeOpinion();
+    window.onload = function() {
+      setInterval(() => {
+        changeOpinion();
+      }, 3000);
+    };
 
   },
 
