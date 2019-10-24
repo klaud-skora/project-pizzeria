@@ -122,9 +122,9 @@ class Booking {
     let timeForBooking = 0.5;
 
     if (availableTime >= duration) {
-      for (let pickedTime = reservationHour + 0.5; pickedTime < reservationHour + duration; pickedTime += 0.5) {
+      for (let pickedTime = reservationHour; pickedTime < reservationHour + duration; pickedTime += 0.5) {
         if (typeof thisBooking.booked[thisBooking.datePicker.value][pickedTime] == 'undefined') {
-          thisBooking.booked[thisBooking.datePicker.value][pickedTime] == [];
+          thisBooking.booked[thisBooking.datePicker.value][pickedTime] = [];
         }
         if (thisBooking.booked[thisBooking.datePicker.value][pickedTime].indexOf(thisBooking.tableChosen) == -1) {
           timeForBooking += 0.5;
@@ -242,8 +242,13 @@ class Booking {
       console.log('reservation', reservation);
       if (reservation) {
         thisBooking.sendBooking();
+
         console.log('thisBooking.booked', thisBooking.booked);
       }
+      //thisBooking.updateDOM();
+      //thisBooking.render();
+      ///thisBooking.getData();
+
     });
   }
   sendBooking() {
@@ -280,6 +285,7 @@ class Booking {
       }).then(function(parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });
+    thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
   }
 }
 

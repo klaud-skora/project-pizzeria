@@ -25,8 +25,6 @@ const app = {
       });
     }
 
-
-
     /*
     let i = 2;
     const opinionArray = [];
@@ -50,8 +48,8 @@ const app = {
       } else {
         i = 0;
       }
-    } */
-    /*
+    }
+
     window.onload = function() {
       setInterval(() => {
         changeOpinion();
