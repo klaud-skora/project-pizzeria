@@ -32,9 +32,10 @@ class BaseWidget {
     const thisWidget = this;
 
     thisWidget.value = value;
+    console.log('value', value);
   }
   parseValue(value) {
-    return parseInt(value);
+    return parseFloat(value);
   }
   isValid(value) {
     return !isNaN(value);

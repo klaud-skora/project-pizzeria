@@ -21,9 +21,11 @@ class AmountWidget extends BaseWidget {
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
   isValid(value) {
+
     return !isNaN(value)
     && value >= settings.amountWidget.defaultMin
     && value <= settings.amountWidget.defaultMax;
+
   }
   renderValue() {
     const thisWidget = this;
@@ -39,10 +41,20 @@ class AmountWidget extends BaseWidget {
     });
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value - 1);
+
+      if (thisWidget.dom.linkDecrease == document.querySelector('.hours-amount a[href="#less"]')) {
+        thisWidget.setValue(thisWidget.value - 0.5);
+      } else {
+        thisWidget.setValue(thisWidget.value - 1);
+      }
     });thisWidget.dom.linkIncrease.addEventListener('click', function(event) {
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
+
+      if (thisWidget.dom.linkIncrease == document.querySelector('.hours-amount a[href="#more"]')) {
+        thisWidget.setValue(thisWidget.value + 0.5);
+      } else {
+        thisWidget.setValue(thisWidget.value + 1);
+      }
     });
   }
 }

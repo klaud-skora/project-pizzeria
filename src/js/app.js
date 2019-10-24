@@ -25,8 +25,9 @@ const app = {
       });
     }
 
-    console.log('buttonArray', buttonArray);
 
+
+    /*
     let i = 2;
     const opinionArray = [];
     const opinions = document.querySelectorAll('.item');
@@ -49,12 +50,13 @@ const app = {
       } else {
         i = 0;
       }
-    }
+    } */
+    /*
     window.onload = function() {
       setInterval(() => {
         changeOpinion();
       }, 3000);
-    };
+    };*/
 
   },
 

@@ -8,13 +8,9 @@ class Booking {
   constructor(booking) {
     const thisBooking = this;
 
-
-
     thisBooking.render(booking);
     thisBooking.initWidgets();
     thisBooking.getData();
-
-    console.log('this booking', thisBooking);
 
   }
   getData() {
@@ -77,7 +73,7 @@ class Booking {
 
     thisBooking.booked = {};
 
-    console.log('bookings', bookings);
+    //console.log('bookings', bookings);
 
     for (let item of bookings) {
       //console.log('item', item);
@@ -98,6 +94,7 @@ class Booking {
       }
     }
     thisBooking.updateDOM();
+
   }
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
@@ -108,13 +105,41 @@ class Booking {
 
     const startHour = utils.hourToNumber(hour);
 
+    for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
 
-    for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock +=0.5) {
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
-
       thisBooking.booked[date][hourBlock].push(table);
+    }
+  }
+
+  durationValidator(reservationHour) {
+    const thisBooking = this;
+
+    const availableTime = settings.hours.close - reservationHour;
+    const duration = parseFloat(thisBooking.hoursAmount.value);
+    let timeForBooking = 0.5;
+
+    if (availableTime >= duration) {
+      for (let pickedTime = reservationHour + 0.5; pickedTime < reservationHour + duration; pickedTime += 0.5) {
+        if (typeof thisBooking.booked[thisBooking.datePicker.value][pickedTime] == 'undefined') {
+          thisBooking.booked[thisBooking.datePicker.value][pickedTime] == [];
+        }
+        if (thisBooking.booked[thisBooking.datePicker.value][pickedTime].indexOf(thisBooking.tableChosen) == -1) {
+          timeForBooking += 0.5;
+        } else {
+          break;
+        }
+      }
+      if (timeForBooking >= duration) {
+        return true;
+      } else {
+        window.alert('This table is available only for ' + timeForBooking + ' hours.');
+        return false;
+      }
+    } else {
+      window.alert('Sorry, we are closing at midnight.');
     }
   }
 
@@ -125,7 +150,6 @@ class Booking {
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-
     let allAvailable = false;
 
     if (
@@ -151,6 +175,7 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
+
         /* selection of available tables */
         table.addEventListener('click', function() {
           table.classList.add(classNames.booking.tableBooked);
@@ -213,7 +238,12 @@ class Booking {
     thisBooking.dom.form.addEventListener('submit', function(event) {
       event.preventDefault();
 
-      thisBooking.sendBooking();
+      const reservation = thisBooking.durationValidator(utils.hourToNumber(thisBooking.hourPicker.value));
+      console.log('reservation', reservation);
+      if (reservation) {
+        thisBooking.sendBooking();
+        console.log('thisBooking.booked', thisBooking.booked);
+      }
     });
   }
   sendBooking() {
