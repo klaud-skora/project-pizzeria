@@ -138,7 +138,8 @@ $base-size: 12px;
 
   .box-two {
     flex: 0 0 66%;
-    height: 90%;
+    height: 100%;
+    width: 90%;
     padding-left: 29px;
     padding-top: 14px;
     overflow: hidden;
@@ -152,37 +153,51 @@ $base-size: 12px;
     border-radius: $radius;
   }
 }
+@keyframes slide-left1 {
+  0% { transform: translateX(8px); }
+
+  100% { transform: translateX(-2px); }
+}
+@keyframes slide-left2 {
+  0% { transform: translateX(-350px); }
+
+  100% { transform: translateX(-360px); }
+}
+@keyframes slide-left3 {
+  0% { transform: translateX(-710px); }
+
+  100% { transform: translateX(-719px); }
+}
 
 .carousel {
-  position: relative;
-  width: 100%;
+  display: flex;
+  width: 300%;
   height: 100%;
   overflow: hidden;
 
   .item {
-    position: absolute;
     width: 100%;
     height: 100%;
     background-color: #fff;
+    opacity: 0;
   }
-}
 
-/* animations */
+  .active {
+    opacity: 1;
+    transition: .7s opacity;
+  }
 
-.carousel .slide-in {
-  transform: translate3d(-100%, 0px, 0px);
-  transition: transform 0.5s ease-out;
-  z-index: 1;
-}
+  .position-one {
+    animation: 1s slide-left1 forwards;
+  }
 
-.carousel .slide-in:target,
-.carousel .slide-in:focus {
-  transform: translate3d(0px, 0px, 0px);
-  z-index: 2;
-}
+  .position-two {
+    animation: 1s slide-left2 forwards;
+  }
 
-.carousel .slide-in:target ~ .slide-in {
-  transform: translate3d(90%, 0px, 0px);
+  .position-three {
+    animation: 1s slide-left3 forwards;
+  }
 }
 
 .carousel_nav {
@@ -197,6 +212,7 @@ $base-size: 12px;
     font-size: 30px;
     text-decoration: none;
     margin-right: 10px;
+    cursor: pointer;
   }
 
   .active {

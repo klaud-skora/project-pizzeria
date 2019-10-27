@@ -11,22 +11,44 @@ const app = {
     console.log(thisApp);
     const buttonArray = [];
     const buttons = document.querySelectorAll('.btn');
+    const items = document.querySelectorAll('.item');
 
     for (let button of buttons) {
       buttonArray.push(button);
       button.addEventListener('click', function() {
 
-        //event.preventDefault();
+        event.preventDefault();
 
         const activeDot = document.querySelector('.carousel_nav > .active');
         activeDot.classList.remove('active');
 
         button.classList.add('active');
+        for (let item of items) {
+          if (item.id != button.id) {
+            item.classList.remove('active');
+            item.classList.remove('position-one');
+            item.classList.remove('position-two');
+            item.classList.remove('position-three');
+          }
+
+
+          if (item.id == button.id) {
+            item.classList.add('active');
+            if (button.id == 'item1') {
+              item.classList.add('position-one');
+            }
+            if (item.id == 'item2') {
+              item.classList.add('position-two');
+            }
+            if (item.id == 'item3') {
+              item.classList.add('position-three');
+            }
+          }
+        }
       });
     }
 
-    /*
-    let i = 2;
+    let i = 1;
     const opinionArray = [];
     const opinions = document.querySelectorAll('.item');
 
@@ -41,7 +63,8 @@ const app = {
       document.querySelector('.carousel').src = opinionArray[i];
       console.log(opinionArray[i]);
 
-      buttonArray[i].click();
+      buttonArray[i].click(event);
+
 
       if (i < opinionArray.length - 1) {
         i++;
@@ -54,7 +77,8 @@ const app = {
       setInterval(() => {
         changeOpinion();
       }, 3000);
-    };*/
+    };
+
 
   },
 
