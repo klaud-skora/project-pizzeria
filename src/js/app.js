@@ -55,13 +55,13 @@ const app = {
     for (let opinion of opinions) {
       opinionArray.push(opinion);
     }
-    console.log('opinionArray', opinionArray);
+    //console.log('opinionArray', opinionArray);
 
 
     function changeOpinion() {
 
       document.querySelector('.carousel').src = opinionArray[i];
-      console.log(opinionArray[i]);
+      //console.log(opinionArray[i]);
 
       buttonArray[i].click(event);
 
@@ -133,7 +133,6 @@ const app = {
       const id = clickedElement.getAttribute('href').replace('#',  '');
       thisApp.activatePage(id);
       window.location.hash = '#/' + id;
-      console.log('elo');
     });
 
   },

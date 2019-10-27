@@ -154,17 +154,17 @@ $base-size: 12px;
   }
 }
 @keyframes slide-left1 {
-  0% { transform: translateX(8px); }
+  0% { transform: translateX(300px); }
 
   100% { transform: translateX(-2px); }
 }
 @keyframes slide-left2 {
-  0% { transform: translateX(-350px); }
+  0% { transform: translateX(-2px); }
 
   100% { transform: translateX(-360px); }
 }
 @keyframes slide-left3 {
-  0% { transform: translateX(-710px); }
+  0% { transform: translateX(-360px); }
 
   100% { transform: translateX(-719px); }
 }
@@ -184,19 +184,19 @@ $base-size: 12px;
 
   .active {
     opacity: 1;
-    transition: .7s opacity;
+    transition: .4s opacity;
   }
 
   .position-one {
-    animation: 1s slide-left1 forwards;
+    animation: .6s slide-left1 forwards;
   }
 
   .position-two {
-    animation: 1s slide-left2 forwards;
+    animation: .6s slide-left2 forwards;
   }
 
   .position-three {
-    animation: 1s slide-left3 forwards;
+    animation: .6s slide-left3 forwards;
   }
 }
 
